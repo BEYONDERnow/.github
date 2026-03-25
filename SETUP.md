@@ -27,14 +27,19 @@ Alle Skills werden in `~/Developer/BEYONDERnow/skills/` geklont:
 # Verzeichnis erstellen
 mkdir -p ~/Developer/BEYONDERnow/skills
 
-# Alle Skill-Repos klonen
+# Alle Skill-Repos klonen (inkl. beyonder Monorepo)
 gh repo list BEYONDERnow --limit 50 --json name --jq '.[].name' | \
-  grep -v "^\.github$" | \
+  grep -v "^\." | \
   while read name; do
     echo "Klone: $name"
     git clone git@github.com:BEYONDERnow/$name.git ~/Developer/BEYONDERnow/skills/$name
   done
 ```
+
+**Struktur danach:**
+- `skills/beyonder/` – Monorepo mit 7 BEYONDER Skills als Unterordner
+- `skills/swissai/` – Einzelrepo
+- `skills/<tooling-skill>/` – je ein Einzelrepo (17 Stück)
 
 ---
 
@@ -50,21 +55,9 @@ mkdir -p ~/.claude/plugins/marketplaces/beyonder/plugins/beyonder-skills/skills
 ~/Developer/BEYONDERnow/scripts/relink-skills.sh
 ```
 
-Das `relink-skills.sh`-Script setzt für alle Skill-Ordner automatisch einen Symlink:
-
-```bash
-#!/bin/bash
-SKILLS_DIR=~/Developer/BEYONDERnow/skills
-PLUGIN_DIR=~/.claude/plugins/marketplaces/beyonder/plugins/beyonder-skills/skills
-
-mkdir -p "$PLUGIN_DIR"
-for skill_dir in "$SKILLS_DIR"/*/; do
-  name=$(basename "$skill_dir")
-  ln -sfn "$skill_dir" "$PLUGIN_DIR/$name"
-  echo "Symlink: $name"
-done
-echo "Fertig. Claude Code neu starten!"
-```
+Das `relink-skills.sh`-Script erkennt automatisch Einzelrepos und das BEYONDER Monorepo:
+- Ordner mit `SKILL.md` direkt → Einzelrepo, 1 Symlink
+- Ordner ohne `SKILL.md` → Monorepo, 1 Symlink pro Unterordner
 
 **Danach Claude Code neu starten** – neue Skills werden beim Start geladen.
 

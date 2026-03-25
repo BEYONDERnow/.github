@@ -6,7 +6,9 @@
 
 ## Was ist das?
 
-Claude Code kann durch Skills mit domänenspezifischem Wissen und Workflows erweitert werden. Jedes Repo in dieser Organisation ist ein eigenständiger Skill, der via Symlink lokal installiert wird und Claude automatisch aktiviert sobald der Kontext passt.
+Claude Code kann durch Skills mit domänenspezifischem Wissen und Workflows erweitert werden. Skills werden via Symlink lokal installiert und aktivieren sich automatisch wenn der Kontext passt.
+
+**Repo-Struktur:** BEYONDER Skills sind in einem Monorepo [`beyonder`](https://github.com/BEYONDERnow/beyonder) zusammengefasst. swissAI und alle Tooling-Skills haben je ein eigenes Repo.
 
 Setup-Anleitung: **[SETUP.md](SETUP.md)**
 
@@ -16,15 +18,17 @@ Setup-Anleitung: **[SETUP.md](SETUP.md)**
 
 ### BEYONDER – Strategie, Design & Texte
 
+Alle 7 BEYONDER Skills im Monorepo: **[BEYONDERnow/beyonder](https://github.com/BEYONDERnow/beyonder)**
+
 | Skill | Beschreibung |
 |---|---|
-| [beyonder-brand-voice](https://github.com/BEYONDERnow/beyonder-brand-voice) | Tonalität, Hook-Formeln und Copy-Frameworks für alle BEYONDER-Texte |
-| [beyonder-strategy](https://github.com/BEYONDERnow/beyonder-strategy) | Positionierung, ICP, Offer-Architektur und Kommunikationsleitplanken |
-| [brand-guidelines](https://github.com/BEYONDERnow/brand-guidelines) | Corporate Design Guidelines v5.0 – Farben, Typografie, Logos |
-| [hubspot-offerte](https://github.com/BEYONDERnow/hubspot-offerte) | Professionelle Verkaufsofferten mit HubSpot-Integration |
-| [social-posts-carousel](https://github.com/BEYONDERnow/social-posts-carousel) | LinkedIn-Karussells nach BEYONDER Corporate Design |
-| [writing-rules](https://github.com/BEYONDERnow/writing-rules) | Hookify-Regeln für Claude Code Automatisierungen |
-| [frontend-design](https://github.com/BEYONDERnow/frontend-design) | Distinctive, production-grade Frontend-Interfaces |
+| beyonder-brand-voice | Tonalität, Hook-Formeln und Copy-Frameworks für alle BEYONDER-Texte |
+| beyonder-strategy | Positionierung, ICP, Offer-Architektur und Kommunikationsleitplanken |
+| brand-guidelines | Corporate Design Guidelines v5.0 – Farben, Typografie, Logos |
+| hubspot-offerte | Professionelle Verkaufsofferten mit HubSpot-Integration |
+| social-posts-carousel | LinkedIn-Karussells nach BEYONDER Corporate Design |
+| writing-rules | Hookify-Regeln für Claude Code Automatisierungen |
+| frontend-design | Distinctive, production-grade Frontend-Interfaces |
 
 ### swissAI – Swiss AI Association
 
@@ -59,14 +63,14 @@ Setup-Anleitung: **[SETUP.md](SETUP.md)**
 ## Quick-Setup (3 Schritte)
 
 ```bash
-# 1. Alle Skills klonen
+# 1. Alle Skill-Repos klonen
 gh repo list BEYONDERnow --limit 50 --json name --jq '.[].name' | \
-  grep -v "^\.github$" | \
+  grep -v "^\." | \
   while read name; do
     git clone git@github.com:BEYONDERnow/$name.git ~/Developer/BEYONDERnow/skills/$name
   done
 
-# 2. Symlinks setzen
+# 2. Symlinks setzen (auto-erkennt Einzelrepos und Monorepo)
 ~/Developer/BEYONDERnow/scripts/relink-skills.sh
 
 # 3. Claude Code neu starten
