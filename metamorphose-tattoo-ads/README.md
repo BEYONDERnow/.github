@@ -41,6 +41,18 @@ Fehlende Bilder erscheinen als beschriftete Platzhalter («MATERIAL FEHLT · Dat
 
 Die Renders (`out/`) sind nicht im Git, weil zu gross. Die Auslieferung erfolgt über Google Drive (siehe Übergabe).
 
+## Upload ins Meta-Werbekonto (pausiert)
+
+`scripts/meta_upload.py` legt 14 Anzeigen **pausiert** an. V2 und V3 kommen in die Neukunden-Anzeigengruppe, V1 und V4 ins Retargeting. Für V1 und V2 gibt es je drei Hooks in der sicheren Variante «ohne» und zusätzlich Hook A «mit». Jede Anzeige spielt im Feed das 4:5-Video und in Stories und Reels das 9:16-Video aus (Platzierungs-Anpassung). Seite, Instagram-Konto, Sofortformular und Call-to-Action übernimmt das Skript aus der laufenden Anzeige «N1».
+
+Voraussetzung ist ein System-User-Token mit `ads_management` für das Werbekonto 321782065041931, hinterlegt als Umgebungsvariable `META_ACCESS_TOKEN` in der Cloud-Umgebung.
+
+```bash
+npm run render:all                          # nur nötig, wenn out/ leer ist (neue Session)
+python3 -I scripts/meta_upload.py           # Probelauf: zeigt Vorlage, Anzeigengruppen, Plan
+python3 -I scripts/meta_upload.py --apply   # Upload + Anzeigen pausiert anlegen → qa/meta_upload_log.json
+```
+
 ## Anzeigentexte (Primärtext, ohne Merkmals-Ansprache)
 
 | Video | Primärtext | Titel |
