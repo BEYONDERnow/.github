@@ -1,0 +1,25 @@
+{
+  "name": "metamorphose-tattoo-ads",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Meta-Video-Ads für Metamorphose Tattoo (Steffi Völker), gebaut mit Remotion",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render:all": "node scripts/render-all.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/poppins": "^5.3.0",
+    "@remotion/cli": "^4.0.535",
+    "@remotion/fonts": "^4.0.535",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.535",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.31",
+    "typescript": "^7.0.2"
+  }
+}
