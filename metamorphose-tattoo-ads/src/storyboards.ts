@@ -1,6 +1,6 @@
-// Storyboards V1–V4 laut Briefing (Abschnitt 7).
-// Zeiten in Sekunden. Bilder liegen in public/img/ (Dateinamen wie auf der Website).
-// Hook-Varianten tauschen nur Szene 0 (0–3 s); der Rest bleibt identisch.
+// Storyboards V1–V4 (Briefing Abschnitt 7), angepasst an das echte Material in assets/selected/.
+// Zeiten in Sekunden. Hook-Varianten tauschen nur 0–3 s; der Rest bleibt identisch.
+// Steffi erscheint in jedem Video spätestens ab Sekunde 7–10 (Porträt + Namenszeile).
 
 export type Focus = {x: number; y: number}; // 0–1, Bildausschnitt-Mittelpunkt
 
@@ -9,25 +9,23 @@ export type Scene = {
   to: number;
   image: string;
   text?: string;
-  // Ken-Burns: Start- und Endzoom (1 = bildfüllend)
-  zoom?: [number, number];
+  zoom?: [number, number]; // Ken-Burns Start-/Endzoom (1 = bildfüllend)
   focus?: Focus;
-  // Nadel-Linie zeichnet sich über das Bild
-  needleLine?: boolean;
+  needleLine?: boolean; // Signatur-Linie zeichnet sich
+  nameTag?: boolean; // «Steffi Völker · Tattoo-Künstlerin»
 };
 
 export type HookKey = 'A' | 'B' | 'C';
 export type Start = 'mit' | 'ohne'; // Ausgangszustand sichtbar (mit) oder nur Prozess/Ergebnis (ohne)
 
 export type Storyboard = {
-  id: string; // z. B. V1_Narbe
+  id: string;
   title: string;
   duration: number;
   hasStartVariant: boolean;
   hooks: Record<HookKey, Record<Start, Scene>>;
-  scenes: Scene[]; // ab Sekunde 3
+  scenes: Scene[];
   endCard: {from: number; lastLine?: string};
-  voiceover?: string;
 };
 
 const hook = (image: string, text: string, extra: Partial<Scene> = {}): Scene => ({
@@ -35,11 +33,20 @@ const hook = (image: string, text: string, extra: Partial<Scene> = {}): Scene =>
   to: 3,
   image,
   text,
-  zoom: [1.06, 1.0],
+  zoom: [1.08, 1.0],
   ...extra,
 });
-
 const same = (s: Scene): Record<Start, Scene> => ({mit: s, ohne: s});
+
+const steffi = (from: number, to: number, text: string): Scene => ({
+  from,
+  to,
+  image: 'steffi_portrait.jpg',
+  text,
+  zoom: [1.0, 1.06],
+  focus: {x: 0.6, y: 0.4},
+  nameTag: true,
+});
 
 export const storyboards: Storyboard[] = [
   {
@@ -49,27 +56,26 @@ export const storyboards: Storyboard[] = [
     hasStartVariant: true,
     hooks: {
       A: {
-        mit: hook('Narben1.jpg', 'Die Narbe bleibt.'),
-        ohne: hook('Narben2.jpg', 'Die Narbe bleibt.', {zoom: [1.35, 1.25]}),
+        mit: hook('narbe_brandnarbe.jpg', 'Die Narbe bleibt.', {focus: {x: 0.5, y: 0.4}}),
+        ohne: hook('narbe_phoenix.jpg', 'Die Narbe bleibt.', {zoom: [1.3, 1.2], focus: {x: 0.5, y: 0.45}}),
       },
       B: {
-        mit: hook('Narben1.jpg', 'Die Narbe bleibt.', {zoom: [1.4, 1.3]}),
-        ohne: hook('Narben2.jpg', 'Die Narbe bleibt.', {zoom: [1.5, 1.38]}),
+        mit: hook('narbe_brandnarbe.jpg', 'Die Narbe bleibt.', {zoom: [1.35, 1.2], focus: {x: 0.55, y: 0.35}}),
+        ohne: hook('narbe_koi.jpg', 'Die Narbe bleibt.', {zoom: [1.4, 1.25], focus: {x: 0.45, y: 0.6}}),
       },
       C: {
-        mit: hook('Narben1.jpg', 'Was, wenn eine Narbe Kunst wird?'),
-        ohne: hook('Narben2.jpg', 'Was, wenn eine Narbe Kunst wird?', {zoom: [1.35, 1.25]}),
+        mit: hook('narbe_brandnarbe.jpg', 'Was, wenn eine Narbe Kunst wird?', {focus: {x: 0.5, y: 0.4}}),
+        ohne: hook('narbe_phoenix.jpg', 'Was, wenn eine Narbe Kunst wird?', {zoom: [1.3, 1.2]}),
       },
     },
     scenes: [
-      {from: 3, to: 7, image: 'Narben2.jpg', text: 'Der Blick darauf darf sich ändern.', zoom: [1.3, 1.2], needleLine: true},
-      {from: 7, to: 13, image: 'Studio3.jpg', text: 'Jedes Motiv entsteht für diese eine Haut.', zoom: [1.0, 1.06]},
-      {from: 13, to: 19, image: 'Narben2.jpg', text: 'Aus Narben werden Zeichen von Stärke.', zoom: [1.0, 1.08]},
-      {from: 19, to: 22, image: 'Studio2.jpg', zoom: [1.04, 1.0]},
+      {from: 3, to: 7, image: 'narbe_brand_tattoo.jpg', text: 'Der Blick darauf darf sich ändern.', zoom: [1.12, 1.0], focus: {x: 0.45, y: 0.4}, needleLine: true},
+      steffi(7, 10, 'Ich entwerfe für genau diese Haut.'),
+      {from: 10, to: 13, image: 'prozess_nadel.jpg', text: 'Jedes Motiv entsteht neu.', zoom: [1.0, 1.08], focus: {x: 0.45, y: 0.5}},
+      {from: 13, to: 17, image: 'narbe_phoenix.jpg', text: 'Aus Narben werden Zeichen von Stärke.', zoom: [1.25, 1.0], focus: {x: 0.5, y: 0.4}},
+      {from: 17, to: 20, image: 'narbe_koi.jpg', text: 'Individuell und ästhetisch.', zoom: [1.0, 1.06], focus: {x: 0.5, y: 0.45}},
     ],
-    endCard: {from: 22},
-    voiceover:
-      'Die Narbe bleibt. Aber der Blick darauf darf sich ändern. Ich entwerfe jedes Motiv für genau diese Haut – damit du dich ansiehst und denkst: Wow. Das bin ich.',
+    endCard: {from: 20},
   },
   {
     id: 'V2_Coverup',
@@ -78,22 +84,25 @@ export const storyboards: Storyboard[] = [
     hasStartVariant: true,
     hooks: {
       A: {
-        mit: hook('CoverUp1.jpg', 'Ein Cover-up darf mehr sein als wegmachen.'),
-        ohne: hook('CoverUp2.jpg', 'Ein Cover-up darf mehr sein als wegmachen.', {zoom: [1.6, 1.45]}),
+        mit: hook('cover_stencil.jpg', 'Ein Cover-up darf mehr sein als wegmachen.', {focus: {x: 0.35, y: 0.5}}),
+        ohne: hook('cover_leopard.jpg', 'Ein Cover-up darf mehr sein als wegmachen.', {zoom: [1.35, 1.25], focus: {x: 0.72, y: 0.36}}),
       },
       B: {
-        mit: hook('CoverUp1.jpg', 'Ein Tattoo aus einem früheren Leben?', {zoom: [1.3, 1.2]}),
-        ohne: hook('CoverUp2.jpg', 'Ein Tattoo aus einem früheren Leben?', {zoom: [1.7, 1.55]}),
+        mit: hook('cover_stencil.jpg', 'Ein Tattoo aus einem früheren Leben?', {zoom: [1.3, 1.15], focus: {x: 0.45, y: 0.3}}),
+        ohne: hook('cover_leopard.jpg', 'Ein Tattoo aus einem früheren Leben?', {zoom: [1.45, 1.32], focus: {x: 0.72, y: 0.36}}),
       },
       C: {
-        mit: hook('CoverUp1.jpg', 'Was passiert mit einem alten Tattoo?'),
-        ohne: hook('CoverUp2.jpg', 'Was passiert mit einem alten Tattoo?', {zoom: [1.6, 1.45]}),
+        mit: hook('cover_stencil.jpg', 'Was passiert mit einem alten Tattoo?', {focus: {x: 0.35, y: 0.5}}),
+        ohne: hook('cover_leopard.jpg', 'Was passiert mit einem alten Tattoo?', {zoom: [1.35, 1.25], focus: {x: 0.72, y: 0.36}}),
       },
     },
     scenes: [
-      {from: 3, to: 8, image: 'Studio4.jpg', text: 'Ein Cover-up darf mehr sein als wegmachen.', zoom: [1.0, 1.06], needleLine: true},
-      {from: 8, to: 15, image: 'CoverUp2.jpg', text: 'Neu entworfen. Nicht übermalt.', zoom: [1.6, 1.0]},
-      {from: 15, to: 20, image: 'CoverUp2.jpg', text: 'Es darf zu dir passen. Heute.', zoom: [1.0, 1.05]},
+      {from: 3, to: 6, image: 'cover_linework.jpg', text: 'Neu entworfen. Nicht übermalt.', zoom: [1.0, 1.1], focus: {x: 0.55, y: 0.45}, needleLine: true},
+      steffi(6, 9, 'Ich entwerfe, was heute zu dir passt.'),
+      {from: 9, to: 11.5, image: 'prozess_nadel.jpg', text: 'Schicht für Schicht.', zoom: [1.05, 1.0], focus: {x: 0.45, y: 0.5}},
+      {from: 11.5, to: 17, image: 'cover_leopard.jpg', text: 'Es darf zu dir passen. Heute.', zoom: [1.4, 1.0], focus: {x: 0.66, y: 0.4}},
+      {from: 17, to: 18.5, image: 'cover_loewe.jpg', zoom: [1.0, 1.05], focus: {x: 0.45, y: 0.4}},
+      {from: 18.5, to: 20, image: 'cover_panther.jpg', zoom: [1.0, 1.05], focus: {x: 0.5, y: 0.4}},
     ],
     endCard: {from: 20},
   },
@@ -103,14 +112,16 @@ export const storyboards: Storyboard[] = [
     duration: 25,
     hasStartVariant: false,
     hooks: {
-      A: same(hook('Seelentier2.jpg', 'Ein Seelentier ist kein Haustier.', {zoom: [1.6, 1.45]})),
-      B: same(hook('Seelentier2.jpg', 'Ein Seelentier ist kein Haustier.', {zoom: [1.9, 1.7]})),
-      C: same(hook('Seelentier2.jpg', 'Wie tätowiert man einen Blick?', {zoom: [1.6, 1.45]})),
+      A: same(hook('tier_kira.jpg', 'Ein Seelentier ist kein Haustier.', {zoom: [1.35, 1.22], focus: {x: 0.42, y: 0.5}})),
+      B: same(hook('tier_dexter.jpg', 'Ein Seelentier ist kein Haustier.', {zoom: [1.4, 1.25], focus: {x: 0.5, y: 0.42}})),
+      C: same(hook('tier_kira.jpg', 'Wie tätowiert man einen Blick?', {zoom: [1.35, 1.22], focus: {x: 0.42, y: 0.5}})),
     },
     scenes: [
-      {from: 3, to: 8, image: 'Seelentier2.jpg', text: 'Es ist Begleiter. Lehrer. Haltgeber.', zoom: [1.3, 1.1]},
-      {from: 8, to: 15, image: 'Seelentier2.jpg', text: 'Darum kopiere ich kein Foto.', zoom: [1.0, 1.12], needleLine: true},
-      {from: 15, to: 20, image: 'Seelentier1-1.jpg', text: 'Ich höre die Geschichte.', zoom: [1.0, 1.06]},
+      {from: 3, to: 7, image: 'tier_kira.jpg', text: 'Es ist Begleiter. Lehrer. Haltgeber.', zoom: [1.3, 1.0], focus: {x: 0.45, y: 0.5}},
+      steffi(7, 10, 'Darum kopiere ich kein Foto.'),
+      {from: 10, to: 14, image: 'design_wolf.jpg', text: 'Ich höre die Geschichte.', zoom: [1.0, 1.15], focus: {x: 0.55, y: 0.3}, needleLine: true},
+      {from: 14, to: 17.5, image: 'tier_dexter.jpg', text: 'Und zeichne den Blick.', zoom: [1.35, 1.1], focus: {x: 0.5, y: 0.45}},
+      {from: 17.5, to: 20, image: 'tier_adler.jpg', zoom: [1.0, 1.06], focus: {x: 0.45, y: 0.3}},
     ],
     endCard: {from: 20},
   },
@@ -120,16 +131,16 @@ export const storyboards: Storyboard[] = [
     duration: 25,
     hasStartVariant: false,
     hooks: {
-      A: same(hook('Seelen.jpg', 'Ich tätowiere keine Fotos.')),
-      B: same(hook('Studio2.jpg', 'Ich tätowiere keine Fotos.')),
-      C: same(hook('Seelen.jpg', 'Was bleibt von einem Menschen?')),
+      A: same(hook('cover_loewe.jpg', 'Ich tätowiere keine Fotos.', {zoom: [1.2, 1.08], focus: {x: 0.4, y: 0.45}})),
+      B: same(hook('steffi_portrait.jpg', 'Ich tätowiere keine Fotos.', {focus: {x: 0.6, y: 0.4}})),
+      C: same(hook('tier_adler.jpg', 'Was bleibt von einem Menschen?', {zoom: [1.2, 1.08], focus: {x: 0.45, y: 0.3}})),
     },
     scenes: [
-      {from: 3, to: 7, image: 'Seelen3.jpg', text: 'Ich tätowiere Geschichten.', zoom: [1.0, 1.06], needleLine: true},
-      {from: 7, to: 9.5, image: 'Studio2.jpg', text: 'Erst das Gespräch.', zoom: [1.0, 1.05]},
-      {from: 9.5, to: 12, image: 'Studio3.jpg', text: 'Dann die Skizze.', zoom: [1.0, 1.05]},
-      {from: 12, to: 14, image: 'Studio4.jpg', text: 'Dann die Haut.', zoom: [1.0, 1.05]},
-      {from: 14, to: 19, image: 'Seelen.jpg', text: 'Über 12 Jahre Erfahrung.', zoom: [1.0, 1.08]},
+      {from: 3, to: 7, image: 'design_pferdfrau.jpg', text: 'Ich tätowiere Geschichten.', zoom: [1.0, 1.08], focus: {x: 0.5, y: 0.3}, needleLine: true},
+      steffi(7, 9.5, 'Erst das Gespräch.'),
+      {from: 9.5, to: 12, image: 'design_wolf.jpg', text: 'Dann die Skizze.', zoom: [1.0, 1.08], focus: {x: 0.55, y: 0.3}},
+      {from: 12, to: 14, image: 'prozess_nadel.jpg', text: 'Dann die Haut.', zoom: [1.0, 1.06], focus: {x: 0.45, y: 0.5}},
+      {from: 14, to: 19, image: 'atelier_lounge.jpg', text: 'Über 12 Jahre Erfahrung.', zoom: [1.0, 1.06], focus: {x: 0.5, y: 0.5}},
     ],
     endCard: {from: 19, lastLine: 'Wow. Das bin ich.'},
   },

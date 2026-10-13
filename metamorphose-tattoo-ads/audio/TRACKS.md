@@ -1,44 +1,43 @@
-# Phase 3 · Musikvorschläge (Stand 13.10.2026)
+# Phase 3 · Ton (Stand 13.10.2026)
 
-**Status: wartet auf Chris' Wahl.** Ich habe keinen Track angehört. Die Plattformen (artlist.io, soundstripe.com usw.) sind aus der Produktionsumgebung gesperrt. Angaben zu BPM und Instrumenten stammen aus Suchergebnissen. Bitte vor dem Kauf anhören und die BPM auf der Track-Seite prüfen.
+## Eingesetzt
 
-## Empfehlung
+Quelle: **Mixkit**. Die Stock Music Free License erlaubt ausdrücklich «Online marketing ads» und «Social Media video posts» ohne Namensnennung. Nicht erlaubt sind TV/Radio, CDs/DVDs, Games, Remixes als reines Musikstück und die Registrierung bei Content-ID-Diensten. Die Lizenz liegt als PDF in `audio/licenses/Mixkit_Stock_Music_Free_License_2026-10-13.pdf`, abgerufen am 13.10.2026.
 
-1. **Steffis Voiceover** (Handy, ruhiger Raum, 30–40 s, Texte unten) und **ein** Pianotrack für alle vier Videos. So bleibt der Markenklang gleich und es braucht nur eine Lizenz.
-2. Lizenz: **Artlist Music & SFX Pro** (deckt laut Preisseite «Paid ads» und «Client work» ab) oder **Soundstripe Pro/Business** (Pro deckt «paid ads, boosted posts» ab, Business zusätzlich mit Freistellung/Indemnification). Artlist «Social» und Soundstripe «Personal» reichen **nicht**.
-3. Die **Meta Sound Collection** ist für Werbung freigegeben, aber an Meta gebunden und lässt sich nur im Ads Manager einsetzen. Dann wäre kein Schnitt auf den Beat möglich. Ich setze sie nur als Rückfalloption ein.
-
-## Kandidaten
-
-| Video | Track | Quelle | BPM (laut Listing) | Instrumente/Stimmung | Link |
+| Video | Track | Künstler | Mixkit-Genre | Ausschnitt | Datei |
 |---|---|---|---|---|---|
-| V1 Narbe | Hope on the Horizon – Alon Peretz | Artlist | 80 | Piano · sad, peaceful, hopeful | https://artlist.io/song/9421/hope-on-the-horizon |
-| V1 Narbe | Winds of Hope (Creative Cut – Piano) – Romeo | Artlist | 80 | Piano · sad, serious, hopeful | https://artlist.io/royalty-free-music/song/winds-of-hope-creative-cut-piano/137756 |
-| V1 Narbe | A Tender Heart – The David Roy Collective | Artlist | 70 | Piano, Streicher · uplifting, hopeful | https://artlist.io/song/64465/a-tender-heart |
-| V2 Cover-up | A Tender Heart – The David Roy Collective | Artlist | 70 | Piano, Streicher, Aufbau für den Reveal | https://artlist.io/song/64465/a-tender-heart |
-| V2 Cover-up | Tender Smile – G-Yerro | Artlist | 71 | Piano, Streicher · uplifting, peaceful | https://artlist.io/royalty-free-music/song/tender-smile/34739 |
-| V2 Cover-up | Wayfair | Soundstripe | 75 | Piano, Glocken · hopeful, calm | https://www.soundstripe.com/library/songs/17944 |
-| V3 Seelentier | Tenderness – Michele Nobler | Artlist | ? | Solo-Piano · sad, peaceful, hopeful | https://artlist.io/royalty-free-music/song/tenderness/11543 |
-| V3 Seelentier | The Wind of Hope | Melody Loops | 75 | Piano über Streichern · tender | https://www.melodyloops.com/tracks/the-wind-of-hope/ |
-| V3 Seelentier | + Ebene: Cello, Hopeful Short Loop (A, B, E) | Artlist SFX | 80 | Cello-Loop als Ergänzung | https://artlist.io/sfx/track/cello-hopeful-short-loop-notes-a-b-e-80-bpm/48292 |
-| V4 Keine Fotokopie | Hope – DaniHaDani | Artlist | 69 | Piano | https://artlist.io/royalty-free-music/song/hope/4865 |
-| V4 Keine Fotokopie | Hope on the Horizon – Alon Peretz | Artlist | 80 | Piano | https://artlist.io/song/9421/hope-on-the-horizon |
-| V4 Keine Fotokopie | Speak From the Heart | Shockwave-Sound | 55 (unter Zielbereich) | Piano + Cello · tender | https://www.shockwave-sound.com/stock-music-track/24788/speak-from-the-heart |
+| V1 Narbe | Possible Dreams (#599) | Eugenio Mininni | Classical | ab 1:04.78 | `audio/music/V1_Narbe.flac` |
+| V2 Cover-up | Miss You (#592) | Eugenio Mininni | Film Score | ab 0:34.72 | `audio/music/V2_Coverup.flac` |
+| V3 Seelentier | Piano Reflections (#22) | Ahjay Stelino | Corporate | ab 1:30.18 | `audio/music/V3_Seelentier.flac` |
+| V4 Keine Fotokopie | Silent Descent (#614) | Eugenio Mininni | Film Score | ab 1:47.38 | `audio/music/V4_Seelentattoo.flac` |
 
-Melody Loops und Shockwave-Sound: Lizenzstufe für bezahlte Social Ads vor dem Kauf prüfen.
+Originaldateien: `audio/source/` (Links: https://assets.mixkit.co/music/<ID>/<ID>.mp3)
 
-## Ablage, sobald gewählt
+**So ausgewählt:** 26 Kandidaten aus Mixkit (Stimmungen emotional, hopeful und sad, Tags Piano, Cello, Strings), automatisch ausgewertet mit librosa. Kriterien:
 
-- Musik: `audio/music/V1_Narbe.wav` (bzw. `V2_Coverup`, `V3_Seelentier`, `V4_Seelentattoo`). Bei Bedarf schneide ich den Einstieg so, dass der erste Lift bei 2–4 s liegt.
-- Voiceover: `audio/vo/V1_Narbe.wav` usw.
-- Lizenz-Zertifikat (PDF/Screenshot) je Track: `audio/licenses/`.
-- `npm run render:all` mischt automatisch: Musik ab Frame 1, unter der Stimme −11 dB (Ducking), −14 LUFS, −1 dBTP.
+- wenig Perkussion (HPSS-Anteil ≤ 6 %)
+- hörbar ab Frame 1 (≥ −32 dB)
+- keine Pause im Fenster
+- erster Lift zwischen 2,5 und 4,5 s (+4 bis +8 dB)
+- zweiter Lift beim Ergebnis-Reveal (+5 bis +10 dB)
 
-## Voiceover-Texte für Steffi (Ich-Form, je ca. 20–25 s gesprochen)
+Danach habe ich den Startpunkt so verschoben, dass Beat-Onsets auf die Schnittpunkte fallen (Beat-Score V3: 2,3 → 13,6).
+
+**Nicht menschlich angehört.** Die Auswahl beruht auf Signalanalyse. Bitte jede Fassung einmal mit Kopfhörer und einmal über den Handy-Lautsprecher prüfen. Ein Tausch ist einfach: neue Datei nach `audio/music/<Video>.flac` legen und `npm run render:all` ausführen.
+
+## Mischung
+
+Musik ab Frame 1, Ausblende ab 23,5 s, Lautheit −14 LUFS integriert, True Peak −1 dBTP, AAC 192 kbit/s (`scripts/render-all.mjs`). Ein Voiceover unter `audio/vo/<Video>.wav` wird automatisch mit −11 dB Ducking eingemischt.
+
+## Offen: Steffis Voiceover (stärkster Hebel)
+
+Texte zum Einsprechen (Handy, ruhiger Raum, je ca. 20 s):
 
 - **V1 Narbe:** «Die Narbe bleibt. Aber der Blick darauf darf sich ändern. Ich entwerfe jedes Motiv für genau diese Haut – damit du dich ansiehst und denkst: Wow. Das bin ich.»
 - **V2 Cover-up:** «Manche Tattoos gehören zu einem früheren Leben. Ein Cover-up darf mehr sein als wegmachen. Ich entwerfe etwas Neues – etwas, das heute zu dir passt.»
 - **V3 Seelentier:** «Ein Seelentier ist kein Haustier. Es ist Begleiter, Lehrer, Haltgeber. Darum kopiere ich kein Foto. Ich höre die Geschichte – und zeichne den Blick.»
 - **V4 Keine Fotokopie:** «Ich tätowiere keine Fotos. Ich tätowiere Geschichten. Erst das Gespräch, dann die Skizze, dann die Haut. Damit du am Ende sagst: Wow. Das bin ich. Und ich bin schön.»
 
-(V2–V4 sind Entwürfe nach Steffis Website-Sätzen. Bitte von Steffi freigeben lassen.)
+## Alternativen mit kostenpflichtiger Lizenz (falls Chris aufwerten will)
+
+Artlist Music & SFX Pro oder Soundstripe Pro/Business decken bezahlte Ads ab. Kandidaten aus der ersten Recherche: «Hope on the Horizon» (Alon Peretz), «A Tender Heart» (The David Roy Collective), «Tender Smile» (G-Yerro), alle auf Artlist.

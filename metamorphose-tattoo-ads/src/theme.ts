@@ -1,10 +1,8 @@
 // Markenwerte Metamorphose Tattoo.
-// VORLÄUFIG: Website und Logo waren aus der Produktionsumgebung nicht erreichbar.
-// Sobald logo-dunkellila.png und das Website-CSS vorliegen, hier die exakten Werte eintragen
-// (python3 scripts/logo_color.py public/img/logo-dunkellila.png).
+// Dunkellila aus logo-dunkellila.png ausgelesen (scripts/logo_color.py), Sans-Schrift aus dem Website-CSS.
 export const theme = {
-  plum: '#3D1F4E', // Dunkellila (Platzhalter bis Logo ausgelesen)
-  plumDeep: '#1E0F27',
+  plum: '#6E4F69', // Dunkellila aus dem Logo
+  plumDeep: '#2A1E28',
   offWhite: '#F7F1EA',
   roseGold: '#C9967E',
   roseGoldLight: '#E8C2AE',
@@ -12,7 +10,7 @@ export const theme = {
 
 export const fonts = {
   serif: 'Cormorant Garamond', // Aussagen, kursiv
-  sans: 'Poppins', // Marke und CTA
+  sans: 'Plus Jakarta Sans', // Marke und CTA (Website-Schrift)
 };
 
 export const FPS = 30;

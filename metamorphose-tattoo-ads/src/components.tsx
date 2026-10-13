@@ -50,7 +50,7 @@ export const KenBurns: React.FC<{image: string; durationInFrames: number; zoom?:
       {/* warme Abdunklung für Textkontrast */}
       <AbsoluteFill
         style={{
-          background: `linear-gradient(180deg, rgba(30,15,39,0.15) 0%, rgba(30,15,39,0.45) 45%, rgba(30,15,39,0.55) 100%)`,
+          background: `linear-gradient(180deg, rgba(42,30,40,0.15) 0%, rgba(42,30,40,0.45) 45%, rgba(42,30,40,0.55) 100%)`,
         }}
       />
     </AbsoluteFill>
@@ -58,11 +58,12 @@ export const KenBurns: React.FC<{image: string; durationInFrames: number; zoom?:
 };
 
 // Aussage in Serif kursiv, Bildmitte innerhalb der Safe Zone. Erscheint ab Frame 0 sichtbar (kein leerer erster Frame).
-export const Statement: React.FC<{text: string; format: Format; durationInFrames: number; instant?: boolean}> = ({
+export const Statement: React.FC<{text: string; format: Format; durationInFrames: number; instant?: boolean; low?: boolean /* true = oben in der Safe Zone (Porträt-Szenen, Gesicht frei) */}> = ({
   text,
   format,
   durationInFrames,
   instant,
+  low,
 }) => {
   const frame = useCurrentFrame();
   const sz = safeZone[format];
@@ -81,20 +82,24 @@ export const Statement: React.FC<{text: string; format: Format; durationInFrames
         top: sz.top,
         height: sz.bottom - sz.top,
         display: 'flex',
-        alignItems: 'center',
+        alignItems: low ? 'flex-start' : 'center',
         justifyContent: 'center',
+        paddingTop: 0,
       }}
     >
       <div
         style={{
+          // weicher Schatten-Hof hinter dem Text für Kontrast auf hellen Bildern
+          background: 'radial-gradient(ellipse at center, rgba(30,20,28,0.55) 0%, rgba(30,20,28,0.25) 50%, rgba(30,20,28,0) 72%)',
+          padding: '70px 50px',
           fontFamily: fonts.serif,
           fontStyle: 'italic',
           fontWeight: 600,
-          fontSize: format === '916' ? 92 : 84,
+          fontSize: format === '916' ? 100 : 88,
           lineHeight: 1.08,
           color: theme.offWhite,
           textAlign: 'center',
-          textShadow: '0 2px 24px rgba(20,8,26,0.85), 0 1px 3px rgba(20,8,26,0.9)',
+          textShadow: '0 2px 24px rgba(30,20,28,0.85), 0 1px 3px rgba(30,20,28,0.9)',
           opacity,
           transform: `translateY(${y}px)`,
         }}
@@ -176,9 +181,9 @@ export const EndCard: React.FC<{format: Format; lastLine?: string}> = ({format, 
           textAlign: 'center',
         }}
       >
-        <ButterflyLine size={format === '916' ? 230 : 180} progress={draw} />
+        <ButterflyLine size={format === '916' ? 150 : 120} progress={draw} />
         {logo ? (
-          <Img src={staticFile('img/logo-dunkellila.png')} style={{width: 560, opacity: fade(6)}} />
+          <Img src={staticFile('img/logo-dunkellila.png')} style={{width: format === '916' ? 760 : 640, opacity: fade(6)}} />
         ) : (
           <div style={{opacity: fade(6)}}>
             <div style={{fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 600, fontSize: 84, color: theme.plum}}>
@@ -213,5 +218,32 @@ export const EndCard: React.FC<{format: Format; lastLine?: string}> = ({format, 
         </div>
       </div>
     </AbsoluteFill>
+  );
+};
+
+// Namenszeile, damit Steffi im Bild eindeutig erkennbar ist (unterer Rand der Safe Zone).
+export const NameTag: React.FC<{format: Format}> = ({format}) => {
+  const frame = useCurrentFrame();
+  const sz = safeZone[format];
+  const opacity = interpolate(frame, [6, 16], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: sz.bottom - 90,
+        textAlign: 'center',
+        opacity,
+        fontFamily: fonts.sans,
+        fontWeight: 600,
+        fontSize: 34,
+        letterSpacing: 3,
+        color: theme.offWhite,
+        textShadow: '0 1px 12px rgba(30,20,28,0.9)',
+      }}
+    >
+      STEFFI VÖLKER <span style={{color: theme.roseGoldLight}}>·</span> TATTOO-KÜNSTLERIN
+    </div>
   );
 };

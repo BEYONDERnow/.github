@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/plus-jakarta-sans": "^5.3.0",
     "@fontsource/poppins": "^5.3.0",
     "@remotion/cli": "^4.0.535",
     "@remotion/fonts": "^4.0.535",

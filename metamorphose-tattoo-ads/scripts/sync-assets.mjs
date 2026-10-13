@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
-const sources = ['assets/website', 'assets/instagram', 'assets/selected'];
+const sources = ['assets/selected']; // kuratierte Ausschnitte aus scripts/crops.py
 const dest = path.join(root, 'public/img');
 fs.mkdirSync(dest, {recursive: true});
 

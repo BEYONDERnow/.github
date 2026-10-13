@@ -7,30 +7,29 @@ Gebaut mit Remotion: eine Komposition pro Video, Parameter für Hook A/B/C, Form
 
 | Phase | Stand |
 |---|---|
-| 0 Werkzeuge | ✅ ffmpeg 6.1, Node 22, Remotion 4.0.535, Python 3.13. Instaloader ist installierbar, aber Instagram ist gesperrt. |
-| 1 Material | ❌ **blockiert**: steffi-voelker.com, instagram.com und youcanbook.me sind von der Netzwerkrichtlinie der Cloud-Umgebung gesperrt. Kein Instagram-Export vorhanden. In Google Drive liegen keine Bilder von Steffi. |
-| 2 Storyboards | ✅ umgesetzt in `src/storyboards.ts`; Abweichungen siehe `STORYBOARDS.md` |
-| 3 Ton | ⏳ 12 Trackvorschläge in `audio/TRACKS.md`; **wartet auf Chris' Wahl bzw. Steffis Voiceover** |
-| 4 Bau | ✅ Vorlage, Signatur-Nadel-Linie, Schmetterlings-Endkarte, Ton-Mischung; ⏳ Finale Renders nach Material + Ton |
-| 5 QA | ✅ Skript und Bericht `qa/report.md`; Pipeline-Test mit −14,0 LUFS bestanden |
+| 0 Werkzeuge | ✅ ffmpeg 6.1, Node 22, Remotion 4.0.535, Python 3.13, librosa, Playwright |
+| 1 Material | ✅ 91 Website-Bilder in `assets/website_all/`, Inventar `assets/inventory.csv`, 19 saubere Ausschnitte in `assets/selected/`. ⚠️ Instagram ist aus der Cloud nicht abrufbar (Login-Pflicht); Steffis Datenexport würde Reels und Prozessclips liefern. |
+| 2 Storyboards | ✅ an das echte Material angepasst, siehe `STORYBOARDS.md` |
+| 3 Ton | ✅ 4 Mixkit-Tracks, deren Lizenz Online-Werbung erlaubt (PDF in `audio/licenses/`), auf die Schnitte ausgerichtet; siehe `audio/TRACKS.md`. ⏳ Steffis Voiceover fehlt noch (optional, stärkster Hebel). |
+| 4 Bau | ✅ 36 Fassungen in `out/` (V1–V4 × Hook A/B/C × 9:16/4:5, V1/V2 zusätzlich mit/ohne Ausgangszustand) |
+| 5 QA | ✅ `qa/report.md`, Messwerte `qa/measurements.md`, Kontaktbögen `qa/contact/` |
 
-## Was ich von Chris brauche
+## Offene Freigaben für Chris
 
-1. **Material**, eine der Varianten:
-   - in der Environment-Einstellung unter Network access `steffi-voelker.com` (und ggf. `instagram.com`) als Allowed domain eintragen ([Anleitung](https://code.claude.com/docs/en/cloud-environments#network-access)), dann lade ich selbst; oder
-   - `scripts/fetch-website.sh` lokal ausführen und `assets/website/` in diesen Branch pushen; oder
-   - Steffis Instagram-Export (ZIP) bzw. die Bilder in einen Google-Drive-Ordner legen und mir den Namen nennen.
-2. **Ton**: Track-Wahl aus `audio/TRACKS.md` (Artlist Pro oder Soundstripe Pro/Business) plus Lizenz-PDF; idealerweise **Steffis Voiceover** (Texte ebenda).
-3. **Steffi im Bild**: mind. ein Porträt oder ein kurzer Clip im Atelier, damit sie bis Sekunde 10 sichtbar ist.
-4. **Entscheidungen**: Abweichungen in `STORYBOARDS.md` bestätigen und Schreibweise «Völker» bestätigen.
+1. Fassungen ansehen und anhören, vor allem die Musik, die maschinell ausgewählt wurde.
+2. Steffi: Bildrechte bestätigen. Sie ist auf allen Bildern Urheberin; abgebildete Kundinnen und Kunden haben ihre Tattoos auf der Website veröffentlicht. Für Werbung sollte Steffi die Einwilligung der Kundschaft bestätigen.
+3. Optional: Voiceover von Steffi (`audio/TRACKS.md`) und Instagram-Datenexport für echte Prozess-Clips.
+4. Upload in den Ads Manager erst nach Freigabe; neue Anzeigen pausiert anlegen.
 
 ## Bedienung
 
 ```bash
 npm install
-node scripts/sync-assets.mjs        # assets/website → public/img, aktualisiert src/available.json
+bash scripts/fetch-website.sh       # alle Website-Bilder → assets/website_all
+python3 -I scripts/crops.py         # saubere Ausschnitte → assets/selected
+node scripts/sync-assets.mjs        # assets/selected → public/img, aktualisiert src/available.json
 python3 -I scripts/inventory.py     # assets/inventory.csv
-python3 -I scripts/logo_color.py public/img/logo-dunkellila.png   # Hex in src/theme.ts eintragen
+python3 -I scripts/logo_color.py assets/selected/logo-dunkellila.png   # → #6E4F69 (in src/theme.ts)
 npm run studio                      # Vorschau im Browser
 npm run render:all                  # alle 36 Fassungen → out/ (Filter möglich: node scripts/render-all.mjs V2)
 bash scripts/qa.sh                  # Messwerte + Kontaktbögen → qa/
@@ -39,6 +38,8 @@ bash scripts/qa.sh                  # Messwerte + Kontaktbögen → qa/
 In der Cloud-Umgebung: `REMOTION_BROWSER=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell` (wird im Render-Skript automatisch gesetzt).
 
 Fehlende Bilder erscheinen als beschriftete Platzhalter («MATERIAL FEHLT · Datei»). Ohne Musik heissen Renders `*_PREVIEW_STUMM.mp4` und sind nicht für Ads gedacht.
+
+Die Renders (`out/`) sind nicht im Git, weil zu gross. Die Auslieferung erfolgt über Google Drive (siehe Übergabe).
 
 ## Anzeigentexte (Primärtext, ohne Merkmals-Ansprache)
 

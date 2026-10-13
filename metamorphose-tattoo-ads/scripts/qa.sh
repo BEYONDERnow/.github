@@ -15,6 +15,6 @@ for f in out/*.mp4; do
   else lufs="stumm"; tp="–"; fi
   echo "| $n | $res | ${dur%.*} s | $mb | $lufs | $tp |" >> qa/measurements.md
   # Kontaktbogen: Frame 1, 3 s, 8 s, 15 s, Endkarte
-  ffmpeg -v error -y -i "$f" -vf "select='eq(n\,0)+eq(n\,89)+eq(n\,240)+eq(n\,450)+eq(n\,720)',scale=360:-1,tile=5x1:padding=8:color=white" -frames:v 1 -vsync vfr "qa/contact/${n}.png"
+  ffmpeg -v error -y -i "$f" -filter_complex "select='eq(n\,0)+eq(n\,89)+eq(n\,240)+eq(n\,450)+eq(n\,720)',scale=300:-1,tile=5x1:padding=8:color=white,split[a][b];[a]palettegen=max_colors=192[p];[b][p]paletteuse=dither=sierra2_4a" -frames:v 1 -fps_mode vfr "qa/contact/${n}.png"
 done
 cat qa/measurements.md

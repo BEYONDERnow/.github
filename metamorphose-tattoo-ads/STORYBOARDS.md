@@ -1,31 +1,33 @@
-# Phase 2 · Storyboards, umgesetzt in `src/storyboards.ts`
+# Phase 2 · Storyboards mit echtem Material
 
-Bildauswahl nach Briefing (Abschnitt 7). **Noch nicht am echten Material geprüft**: Die Website war nicht erreichbar. Ausschnitte (`focus`, `zoom`) justiere ich, sobald die Bilder in `assets/website/` liegen.
+Umgesetzt in `src/storyboards.ts`. Die Bilder stammen von steffi-voelker.com: 91 Originale, Inventar in `assets/inventory.csv`. Die Ausschnitte erzeugt `scripts/crops.py` nach `assets/selected/`.
 
-## Abweichungen vom Briefing (bitte bestätigen)
+## Materiallage
+
+- Die Briefing-Dateien (`Narben1.jpg`, `CoverUp1.jpg`, `Seelen*.jpg` usw.) sind auf der Website nur **150 × 150 px** gross und damit unbrauchbar.
+- Ersatz sind die Galerie-Bilder von 2026/04 mit 1284 px. Das sind Komposite mit Rahmen, Wasserzeichen, Titel und einem **eingeklebten Vorher-Bild**, also Vorher/Nachher nebeneinander. Ich verwende nur Ausschnitte ohne Vorher-Einsatz, Wasserzeichen und Titel, mit Lanczos hochskaliert (Faktor 1,3–2,1) und leicht nachgeschärft.
+- Prozessbilder: Stencil über altem Tattoo (`20251206`), Linework über altem Tattoo (`20251207`), Nadel bei der Arbeit (`Banner5`).
+- Steffi: Porträt `Steffi_Voelker.jpg`, 2000 × 1333 px.
+- Instagram war nicht nutzbar: Anonyme Zugriffe aus dem Rechenzentrum werden mit Login-Pflicht und Rate-Limit beantwortet. Mit Steffis Datenexport lassen sich Reels und Prozessclips nachrüsten.
+
+## Ablauf (9:16, 25 s, 30 fps; 4:5 gleiche Sequenz)
+
+| Video | 0–3 s Hook | danach |
+|---|---|---|
+| V1 Narbe | mit: Brandnarbe · ohne: Phoenix-Detail (B: Koi-Detail) | 3–7 Tattoo auf Brandnarbe + Nadel-Linie «Der Blick darauf darf sich ändern.» · 7–10 **Steffi** «Ich entwerfe für genau diese Haut.» · 10–13 Nadel «Jedes Motiv entsteht neu.» · 13–17 Phoenix «Aus Narben werden Zeichen von Stärke.» · 17–20 Koi «Individuell und ästhetisch.» · 20–25 Endkarte |
+| V2 Cover-up | mit: Stencil über altem Tattoo · ohne: Leopardenauge | 3–6 Linework + Nadel-Linie «Neu entworfen. Nicht übermalt.» · 6–9 **Steffi** «Ich entwerfe, was heute zu dir passt.» · 9–11,5 Nadel «Schicht für Schicht.» · 11,5–17 Leopard Detail→Ganzes «Es darf zu dir passen. Heute.» · 17–20 Löwe, Panther · 20–25 Endkarte |
+| V3 Seelentier | Kira (Chihuahua) Augen-Makro (B: Dexter) | 3–7 Kira «Es ist Begleiter. Lehrer. Haltgeber.» · 7–10 **Steffi** «Darum kopiere ich kein Foto.» · 10–14 Wolf-Entwurf + Nadel-Linie «Ich höre die Geschichte.» · 14–17,5 Dexter «Und zeichne den Blick.» · 17,5–20 Adler · 20–25 Endkarte |
+| V4 Keine Fotokopie | A: Löwe · B: Steffi · C: Adler | 3–7 Entwurf Pferd/Frau «Ich tätowiere Geschichten.» · 7–9,5 **Steffi** «Erst das Gespräch.» · 9,5–12 Wolf-Entwurf «Dann die Skizze.» · 12–14 Nadel «Dann die Haut.» · 14–19 Atelier «Über 12 Jahre Erfahrung.» · 19–25 Endkarte «Wow. Das bin ich.» |
+
+## Abweichungen vom Briefing
 
 | Punkt | Briefing | Umsetzung | Grund |
 |---|---|---|---|
-| Varianten Narbe/Cover-up | A mit Ausgangszustand / B ohne | Parameter `start = mit/ohne`, unabhängig von Hook A/B/C | Hook-Buchstaben und Vorher-Varianten sonst doppelt belegt |
-| Dateiname | `MT_V2_Coverup_HookA_916.mp4` | `MT_V2_Coverup_HookA_916_mit.mp4` / `_ohne` bei V1, V2 | Unterscheidung der Varianten |
-| Hook C Narbe | «Was, wenn eine Narbe Teil eines Kunstwerks wird?» (9 Wörter) | «Was, wenn eine Narbe Kunst wird?» | max. 7 Wörter |
-| Hook C Cover-up | «Was passiert mit einem Tattoo aus einem früheren Leben?» (9) | «Was passiert mit einem alten Tattoo?» | max. 7 Wörter |
-| Hook A Cover-up | – | «Ein Cover-up darf mehr sein als wegmachen.» (Hook-Bank A) | Hook-Bank; Storyboard-Satz «Ein Tattoo aus einem früheren Leben?» ist jetzt Hook B |
-| Hook B (Bild-Hooks) | Hand streicht über Narben-Tattoo / Stencil über altem Tattoo / Foto→Skizze→Haut / Steffi im Gespräch | Makro-Ausschnitt aus vorhandenem Foto + Satz-Hook | Video-/Prozessmaterial fehlt; Austausch, sobald Clips da sind |
-| V3 Szene 15–20 s | «Ich höre die Geschichte – und zeichne den Blick.» (8) | «Ich höre die Geschichte.» | max. 7 Wörter; Fortsetzung im Voiceover |
-| V4 «Erst das Gespräch. Dann die Skizze. Dann die Haut.» | eine Einblendung | drei Einblendungen auf Studio2/3/4, Schnitt auf den Beat | max. 7 Wörter je Einblendung |
-| V4 «Über 12 Jahre Erfahrung. In einem geschützten Raum.» | eine Einblendung | nur «Über 12 Jahre Erfahrung.» | max. 7 Wörter; «geschützter Raum» im Anzeigentext |
-| Prozess-Szenen (Skizze, Stencil, Nadel) | falls nicht vorhanden: Atelier | Atelier-Bilder Studio2–4 | Instagram-Material fehlt |
-
-## Regel «Steffi spätestens ab Sekunde 10»
-
-Ohne Voiceover und ohne ein Bild von Steffi ist sie in **keinem** Video bis Sekunde 10 sichtbar oder hörbar. Lösung: Steffis Voiceover (siehe `audio/TRACKS.md`) **oder** ein Porträt bzw. Clip von Steffi im Atelier, den ich dann bei ca. 7–10 s einsetze.
-
-## Ablauf je Video (9:16, 25 s, 30 fps)
-
-- **V1 Narbe:** 0–3 Hook · 3–7 Narben2 + Nadel-Linie «Der Blick darauf darf sich ändern.» · 7–13 Studio3 «Jedes Motiv entsteht für diese eine Haut.» · 13–19 Narben2 Reveal «Aus Narben werden Zeichen von Stärke.» · 19–22 Studio2 · 22–25 Endkarte
-- **V2 Cover-up:** 0–3 Hook · 3–8 Studio4 + Nadel-Linie «Ein Cover-up darf mehr sein als wegmachen.» · 8–15 CoverUp2 Detail→Ganzes «Neu entworfen. Nicht übermalt.» · 15–20 CoverUp2 «Es darf zu dir passen. Heute.» · 20–25 Endkarte
-- **V3 Seelentier:** 0–3 Augen-Makro Seelentier2 · 3–8 «Es ist Begleiter. Lehrer. Haltgeber.» · 8–15 Fahrt über Fell/Blick + Nadel-Linie «Darum kopiere ich kein Foto.» · 15–20 Seelentier1-1 «Ich höre die Geschichte.» · 20–25 Endkarte
-- **V4 Keine Fotokopie:** 0–3 Seelen (Wolf) · 3–7 Seelen3 «Ich tätowiere Geschichten.» · 7–14 Studio2/3/4 Gespräch/Skizze/Haut · 14–19 Seelen «Über 12 Jahre Erfahrung.» · 19–25 Endkarte mit «Wow. Das bin ich.»
-
-Vorher/Nachher: Ausgangszustand (Narben1, CoverUp1) erscheint nur in 0–3 s der `mit`-Variante, nie gleichzeitig mit dem Ergebnis im selben Frame.
+| Bilder | Narben1/2, CoverUp1/2, Seelen, Seelentier1/2 | Galerie-Ausschnitte (siehe oben) | Briefing-Dateien nur 150 px |
+| Varianten Narbe/Cover-up | A mit / B ohne Ausgangszustand | Parameter `mit`/`ohne`, unabhängig von Hook A/B/C; Dateiname `_mit`/`_ohne` | Hook-Buchstaben sonst doppelt belegt |
+| Ausgangszustand | Narben1 / CoverUp1 | Brandnarbe (V1), Stencil über altem Tattoo (V2), nur 0–3 s, nie im selben Frame wie das Ergebnis | keine Vorher/Nachher-Gegenüberstellung |
+| Hook B (Bild) | Hand über Narbe, Stencil, Foto→Skizze→Haut, Steffi im Gespräch | Makro-Ausschnitte; bei V2 echter Stencil-Moment; bei V4 Steffi-Porträt | kein Videomaterial |
+| Hook C Narbe / Cover-up | 9 Wörter | «Was, wenn eine Narbe Kunst wird?» / «Was passiert mit einem alten Tattoo?» | max. 7 Wörter |
+| Steffi ab 10 s | – | Porträt + Namenszeile bei 6–10 s in allen Videos | Regel erfüllt ohne Voiceover |
+| V4 «Über 12 Jahre … geschützten Raum» | eine Einblendung | nur «Über 12 Jahre Erfahrung.»; «geschützter Raum» steht im Anzeigentext | max. 7 Wörter |
+| Seelen3 (Drache mit Lotus) | V4 3–7 s | Entwurf Pferd/Frau (1284 px) | Drache nur in 600 px vorhanden |

@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, Sequence} from 'remotion';
-import {EndCard, KenBurns, NeedleLine, Statement} from './components';
+import {EndCard, KenBurns, NameTag, NeedleLine, Statement} from './components';
 import {storyboards, type HookKey, type Scene, type Start} from './storyboards';
 import {FPS, type Format} from './theme';
 
@@ -20,7 +20,8 @@ const SceneView: React.FC<{scene: Scene; format: Format; isHook?: boolean}> = ({
       <KenBurns image={scene.image} durationInFrames={dur} zoom={scene.zoom} focus={scene.focus} />
       {scene.needleLine ? <NeedleLine format={format} durationInFrames={dur} /> : null}
       {/* Hook-Text ist ab Frame 1 voll sichtbar */}
-      {scene.text ? <Statement text={scene.text} format={format} durationInFrames={dur} instant={isHook} /> : null}
+      {scene.text ? <Statement text={scene.text} format={format} durationInFrames={dur} instant={isHook} low={scene.nameTag} /> : null}
+      {scene.nameTag ? <NameTag format={format} /> : null}
     </AbsoluteFill>
   );
 };
@@ -30,7 +31,7 @@ export const AdVideo: React.FC<AdProps> = ({video, hook, start, format}) => {
   if (!sb) throw new Error(`Unbekanntes Storyboard: ${video}`);
   const hookScene = sb.hooks[hook][sb.hasStartVariant ? start : 'mit'];
   return (
-    <AbsoluteFill style={{backgroundColor: '#1E0F27'}}>
+    <AbsoluteFill style={{backgroundColor: '#2A1E28'}}>
       <Sequence from={0} durationInFrames={f(hookScene.to)} premountFor={15}>
         <SceneView scene={hookScene} format={format} isHook />
       </Sequence>

@@ -4,3 +4,4 @@ public/img/
 assets/instagram_export/*
 !assets/instagram_export/.gitkeep
 *.zip
+audio/source/
