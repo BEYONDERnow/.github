@@ -1,0 +1,362 @@
+[
+ {
+  "file": "MT_V1_Narbe_HookA_45_mit.mp4",
+  "video": "V1_Narbe",
+  "hook": "A",
+  "format": "45",
+  "start": "mit",
+  "mb": 4.8,
+  "lufs": -13.9,
+  "tp": -3.9
+ },
+ {
+  "file": "MT_V1_Narbe_HookA_45_ohne.mp4",
+  "video": "V1_Narbe",
+  "hook": "A",
+  "format": "45",
+  "start": "ohne",
+  "mb": 4.9,
+  "lufs": -13.9,
+  "tp": -3.9
+ },
+ {
+  "file": "MT_V1_Narbe_HookA_916_mit.mp4",
+  "video": "V1_Narbe",
+  "hook": "A",
+  "format": "916",
+  "start": "mit",
+  "mb": 5.9,
+  "lufs": -13.9,
+  "tp": -3.9
+ },
+ {
+  "file": "MT_V1_Narbe_HookA_916_ohne.mp4",
+  "video": "V1_Narbe",
+  "hook": "A",
+  "format": "916",
+  "start": "ohne",
+  "mb": 6.1,
+  "lufs": -13.9,
+  "tp": -3.9
+ },
+ {
+  "file": "MT_V1_Narbe_HookB_45_mit.mp4",
+  "video": "V1_Narbe",
+  "hook": "B",
+  "format": "45",
+  "start": "mit",
+  "mb": 4.8,
+  "lufs": -13.9,
+  "tp": -3.9
+ },
+ {
+  "file": "MT_V1_Narbe_HookB_45_ohne.mp4",
+  "video": "V1_Narbe",
+  "hook": "B",
+  "format": "45",
+  "start": "ohne",
+  "mb": 5.0,
+  "lufs": -13.9,
+  "tp": -3.9
+ },
+ {
+  "file": "MT_V1_Narbe_HookB_916_mit.mp4",
+  "video": "V1_Narbe",
+  "hook": "B",
+  "format": "916",
+  "start": "mit",
+  "mb": 6.0,
+  "lufs": -13.9,
+  "tp": -3.9
+ },
+ {
+  "file": "MT_V1_Narbe_HookB_916_ohne.mp4",
+  "video": "V1_Narbe",
+  "hook": "B",
+  "format": "916",
+  "start": "ohne",
+  "mb": 6.2,
+  "lufs": -13.9,
+  "tp": -3.9
+ },
+ {
+  "file": "MT_V1_Narbe_HookC_45_mit.mp4",
+  "video": "V1_Narbe",
+  "hook": "C",
+  "format": "45",
+  "start": "mit",
+  "mb": 4.8,
+  "lufs": -13.9,
+  "tp": -3.9
+ },
+ {
+  "file": "MT_V1_Narbe_HookC_45_ohne.mp4",
+  "video": "V1_Narbe",
+  "hook": "C",
+  "format": "45",
+  "start": "ohne",
+  "mb": 5.0,
+  "lufs": -13.9,
+  "tp": -3.9
+ },
+ {
+  "file": "MT_V1_Narbe_HookC_916_mit.mp4",
+  "video": "V1_Narbe",
+  "hook": "C",
+  "format": "916",
+  "start": "mit",
+  "mb": 6.0,
+  "lufs": -13.9,
+  "tp": -3.9
+ },
+ {
+  "file": "MT_V1_Narbe_HookC_916_ohne.mp4",
+  "video": "V1_Narbe",
+  "hook": "C",
+  "format": "916",
+  "start": "ohne",
+  "mb": 6.1,
+  "lufs": -13.9,
+  "tp": -3.9
+ },
+ {
+  "file": "MT_V2_Coverup_HookA_45_mit.mp4",
+  "video": "V2_Coverup",
+  "hook": "A",
+  "format": "45",
+  "start": "mit",
+  "mb": 5.1,
+  "lufs": -14.0,
+  "tp": -1.4
+ },
+ {
+  "file": "MT_V2_Coverup_HookA_45_ohne.mp4",
+  "video": "V2_Coverup",
+  "hook": "A",
+  "format": "45",
+  "start": "ohne",
+  "mb": 5.2,
+  "lufs": -14.0,
+  "tp": -1.4
+ },
+ {
+  "file": "MT_V2_Coverup_HookA_916_mit.mp4",
+  "video": "V2_Coverup",
+  "hook": "A",
+  "format": "916",
+  "start": "mit",
+  "mb": 6.1,
+  "lufs": -14.0,
+  "tp": -1.4
+ },
+ {
+  "file": "MT_V2_Coverup_HookA_916_ohne.mp4",
+  "video": "V2_Coverup",
+  "hook": "A",
+  "format": "916",
+  "start": "ohne",
+  "mb": 6.1,
+  "lufs": -14.0,
+  "tp": -1.4
+ },
+ {
+  "file": "MT_V2_Coverup_HookB_45_mit.mp4",
+  "video": "V2_Coverup",
+  "hook": "B",
+  "format": "45",
+  "start": "mit",
+  "mb": 5.1,
+  "lufs": -14.0,
+  "tp": -1.4
+ },
+ {
+  "file": "MT_V2_Coverup_HookB_45_ohne.mp4",
+  "video": "V2_Coverup",
+  "hook": "B",
+  "format": "45",
+  "start": "ohne",
+  "mb": 5.2,
+  "lufs": -14.0,
+  "tp": -1.4
+ },
+ {
+  "file": "MT_V2_Coverup_HookB_916_mit.mp4",
+  "video": "V2_Coverup",
+  "hook": "B",
+  "format": "916",
+  "start": "mit",
+  "mb": 6.1,
+  "lufs": -14.0,
+  "tp": -1.4
+ },
+ {
+  "file": "MT_V2_Coverup_HookB_916_ohne.mp4",
+  "video": "V2_Coverup",
+  "hook": "B",
+  "format": "916",
+  "start": "ohne",
+  "mb": 6.1,
+  "lufs": -14.0,
+  "tp": -1.4
+ },
+ {
+  "file": "MT_V2_Coverup_HookC_45_mit.mp4",
+  "video": "V2_Coverup",
+  "hook": "C",
+  "format": "45",
+  "start": "mit",
+  "mb": 5.1,
+  "lufs": -14.0,
+  "tp": -1.4
+ },
+ {
+  "file": "MT_V2_Coverup_HookC_45_ohne.mp4",
+  "video": "V2_Coverup",
+  "hook": "C",
+  "format": "45",
+  "start": "ohne",
+  "mb": 5.2,
+  "lufs": -14.0,
+  "tp": -1.4
+ },
+ {
+  "file": "MT_V2_Coverup_HookC_916_mit.mp4",
+  "video": "V2_Coverup",
+  "hook": "C",
+  "format": "916",
+  "start": "mit",
+  "mb": 6.1,
+  "lufs": -14.0,
+  "tp": -1.4
+ },
+ {
+  "file": "MT_V2_Coverup_HookC_916_ohne.mp4",
+  "video": "V2_Coverup",
+  "hook": "C",
+  "format": "916",
+  "start": "ohne",
+  "mb": 6.1,
+  "lufs": -14.0,
+  "tp": -1.4
+ },
+ {
+  "file": "MT_V3_Seelentier_HookA_45.mp4",
+  "video": "V3_Seelentier",
+  "hook": "A",
+  "format": "45",
+  "start": "",
+  "mb": 5.4,
+  "lufs": -14.1,
+  "tp": -1.3
+ },
+ {
+  "file": "MT_V3_Seelentier_HookA_916.mp4",
+  "video": "V3_Seelentier",
+  "hook": "A",
+  "format": "916",
+  "start": "",
+  "mb": 6.5,
+  "lufs": -14.1,
+  "tp": -1.3
+ },
+ {
+  "file": "MT_V3_Seelentier_HookB_45.mp4",
+  "video": "V3_Seelentier",
+  "hook": "B",
+  "format": "45",
+  "start": "",
+  "mb": 5.7,
+  "lufs": -14.1,
+  "tp": -1.3
+ },
+ {
+  "file": "MT_V3_Seelentier_HookB_916.mp4",
+  "video": "V3_Seelentier",
+  "hook": "B",
+  "format": "916",
+  "start": "",
+  "mb": 6.7,
+  "lufs": -14.1,
+  "tp": -1.3
+ },
+ {
+  "file": "MT_V3_Seelentier_HookC_45.mp4",
+  "video": "V3_Seelentier",
+  "hook": "C",
+  "format": "45",
+  "start": "",
+  "mb": 5.4,
+  "lufs": -14.1,
+  "tp": -1.3
+ },
+ {
+  "file": "MT_V3_Seelentier_HookC_916.mp4",
+  "video": "V3_Seelentier",
+  "hook": "C",
+  "format": "916",
+  "start": "",
+  "mb": 6.5,
+  "lufs": -14.1,
+  "tp": -1.3
+ },
+ {
+  "file": "MT_V4_Seelentattoo_HookA_45.mp4",
+  "video": "V4_Seelentattoo",
+  "hook": "A",
+  "format": "45",
+  "start": "",
+  "mb": 4.7,
+  "lufs": -14.0,
+  "tp": -2.2
+ },
+ {
+  "file": "MT_V4_Seelentattoo_HookA_916.mp4",
+  "video": "V4_Seelentattoo",
+  "hook": "A",
+  "format": "916",
+  "start": "",
+  "mb": 5.5,
+  "lufs": -14.0,
+  "tp": -2.2
+ },
+ {
+  "file": "MT_V4_Seelentattoo_HookB_45.mp4",
+  "video": "V4_Seelentattoo",
+  "hook": "B",
+  "format": "45",
+  "start": "",
+  "mb": 4.4,
+  "lufs": -14.0,
+  "tp": -2.2
+ },
+ {
+  "file": "MT_V4_Seelentattoo_HookB_916.mp4",
+  "video": "V4_Seelentattoo",
+  "hook": "B",
+  "format": "916",
+  "start": "",
+  "mb": 5.2,
+  "lufs": -14.0,
+  "tp": -2.2
+ },
+ {
+  "file": "MT_V4_Seelentattoo_HookC_45.mp4",
+  "video": "V4_Seelentattoo",
+  "hook": "C",
+  "format": "45",
+  "start": "",
+  "mb": 4.6,
+  "lufs": -14.0,
+  "tp": -2.2
+ },
+ {
+  "file": "MT_V4_Seelentattoo_HookC_916.mp4",
+  "video": "V4_Seelentattoo",
+  "hook": "C",
+  "format": "916",
+  "start": "",
+  "mb": 5.5,
+  "lufs": -14.0,
+  "tp": -2.2
+ }
+]
