@@ -200,6 +200,17 @@ Damit Claude die Anzeigen selbst pausiert anlegen kann (`scripts/meta_upload.py`
    `ads_management`, `ads_read`, `business_management`, `pages_show_list`, `pages_read_engagement`, `pages_manage_ads`, `leads_retrieval`, `instagram_basic`
    → Token kopieren. Er wird nur einmal angezeigt.
 
+### Variante ohne Unternehmensverifizierung: Nutzer-Token (60 Tage)
+
+Systemnutzer-Tokens verlangen eine verifizierte Business-Verwaltung. Ein **Nutzer-Token** aus einer App im Entwicklungsmodus braucht das nicht, solange du selbst Admin des Werbekontos und der Seite bist.
+
+1. https://developers.facebook.com/apps → «App erstellen» → Anwendungsfall «Andere» → Typ **Business**. Die App bleibt im **Entwicklungsmodus**, also ohne App-Review und ohne Unternehmensverifizierung.
+2. https://developers.facebook.com/tools/explorer → oben rechts die neue App wählen → «User or Page»: **User Token** → Berechtigungen hinzufügen:
+   `ads_management`, `ads_read`, `business_management`, `pages_show_list`, `pages_read_engagement`, `pages_manage_ads`, `leads_retrieval`, `instagram_basic`
+   → **Generate Access Token** → mit deinem Facebook-Konto bestätigen.
+3. Der Token gilt zunächst nur 1–2 Stunden. Verlängern: https://developers.facebook.com/tools/debug/accesstoken → Token einfügen → «Debug» → unten **«Extend Access Token»** → der neue Token gilt rund 60 Tage.
+4. Den verlängerten Token wie oben als `META_ACCESS_TOKEN` in der Cloud-Umgebung hinterlegen.
+
 ### Token hinterlegen
 
 - In Claude Code (claude.ai/code): in der Session-Titelleiste das **Umgebungsmenü** öffnen → **Edit**.
