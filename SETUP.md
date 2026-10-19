@@ -210,3 +210,9 @@ Skills werden beim **Session-Start** geladen. Claude Code neu starten um Änderu
 # Status aller Skills anzeigen
 ~/Developer/BEYONDERnow/scripts/sync-skills.sh status
 ```
+
+---
+
+## Weitere Dokumentation
+
+- [Skill swissai-erklaervideo](docs/swissai-erklaervideo.md): Inhalt, Ablage in den Repos, Update-Ablauf, Stolpersteine
