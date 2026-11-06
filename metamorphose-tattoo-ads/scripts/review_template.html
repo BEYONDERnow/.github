@@ -1,0 +1,205 @@
+<title>Metamorphose Ad-Freigabe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: Freigabe-Mappe – links ausgerichteter Kopf, pro Video ein Kapitel mit Anzeigentext und einer Reihe Handy-Rahmen */
+:root {
+  --paper: #F7F2EF;
+  --sheet: #FFFFFF;
+  --ink: #2A1E28;
+  --muted: #74656F;
+  --plum: #6E4F69;
+  --rose: #A86F57;
+  --line: #E6DCD9;
+  --ok: #2F7A55;
+  --warn: #A5561C;
+  --display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --sans: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #18131A; --sheet: #221B22; --ink: #EFE7EC; --muted: #A796A2; --plum: #CDA8C6;
+    --rose: #DDA58C; --line: #382D36; --ok: #6FC79A; --warn: #E9A26B; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #18131A; --sheet: #221B22; --ink: #EFE7EC; --muted: #A796A2; --plum: #CDA8C6;
+  --rose: #DDA58C; --line: #382D36; --ok: #6FC79A; --warn: #E9A26B; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 400 15px/1.55 var(--sans); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 80px; display: grid; gap: 56px; }
+header { display: grid; gap: 18px; }
+.eyebrow { font: 600 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--rose); }
+h1 { font: italic 600 clamp(40px, 6vw, 68px)/1.02 var(--display); margin: 0; color: var(--plum); text-wrap: balance; }
+.lede { max-width: 64ch; margin: 0; color: var(--muted); }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 28px; font-variant-numeric: tabular-nums; }
+.facts div { display: grid; }
+.facts b { font: 600 22px/1.2 var(--sans); color: var(--ink); }
+.facts span { font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+.filters { display: flex; flex-wrap: wrap; gap: 14px 28px; padding-block: 16px; border-block: 1px solid var(--line); position: sticky; top: env(safe-area-inset-top, 0px); background: var(--paper); z-index: 2; }
+.group { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.group > span { font-size: 12px; color: var(--muted); margin-right: 4px; letter-spacing: .04em; }
+.chip { font: 500 13px/1 var(--sans); padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--sheet); color: var(--ink); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--plum); border-color: var(--plum); color: var(--paper); }
+.chip:focus-visible, a:focus-visible, video:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; }
+section.video { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 32px; }
+@media (max-width: 860px) { section.video { grid-template-columns: minmax(0, 1fr); } }
+.info { display: grid; gap: 14px; align-content: start; }
+.info h2 { font: italic 600 40px/1.05 var(--display); margin: 0; color: var(--plum); }
+.slot { justify-self: start; font: 600 11px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; padding: 6px 9px; border-radius: 4px; border: 1px solid var(--rose); color: var(--rose); }
+.copy { display: grid; gap: 6px; }
+.copy label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.copy p { margin: 0; }
+.copy .head { font-weight: 600; }
+.copybtn { justify-self: start; font: 500 12px/1 var(--sans); background: none; border: 0; color: var(--plum); padding: 4px 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+dl.hooks { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 10px; font-size: 14px; }
+dl.hooks dt { font-weight: 700; color: var(--plum); }
+dl.hooks dd { margin: 0; }
+.music { font-size: 13px; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr)); gap: 22px 18px; align-items: start; }
+figure { margin: 0; display: grid; gap: 8px; }
+.frame { background: #000; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); max-width: 100%; }
+.frame.f916 { aspect-ratio: 9 / 16; }
+.frame.f45 { aspect-ratio: 4 / 5; }
+.frame video { width: 100%; height: 100%; display: block; object-fit: cover; }
+figcaption { display: grid; gap: 4px; font-size: 13px; }
+figcaption b { font-weight: 600; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px; font-variant-numeric: tabular-nums; }
+.pill { font: 500 11px/1 var(--sans); padding: 5px 7px; border-radius: 4px; border: 1px solid currentColor; }
+.pill.ok { color: var(--ok); }
+.pill.no { color: var(--warn); }
+figcaption a { color: var(--plum); font-size: 12px; overflow-wrap: anywhere; }
+.empty { color: var(--muted); font-style: italic; }
+footer { display: grid; gap: 10px; border-top: 1px solid var(--line); padding-top: 24px; max-width: 72ch; }
+footer h3 { font: italic 600 28px/1.1 var(--display); color: var(--plum); margin: 0; }
+footer ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Metamorphose Tattoo · Steffi Völker · Veltheim AG</div>
+    <h1>Video-Ads zur Freigabe</h1>
+    <p class="lede">Vier Themen, je drei Hooks, in 9:16 für Reels und Stories und 4:5 für den Feed. Narbe und Cover-up gibt es zusätzlich mit und ohne Ausgangszustand. Bitte jede Fassung mit Ton ansehen. Die Musik wurde per Signalanalyse ausgewählt und noch von niemandem angehört.</p>
+    <div class="facts" id="facts"></div>
+  </header>
+
+  <nav class="filters" aria-label="Fassungen filtern">
+    <div class="group" data-key="format"><span>Format</span></div>
+    <div class="group" data-key="hook"><span>Hook</span></div>
+    <div class="group" data-key="start"><span>Ausgangszustand</span></div>
+  </nav>
+
+  <main id="videos" style="display:grid; gap:64px"></main>
+
+  <footer>
+    <h3>Vor dem Upload</h3>
+    <ol>
+      <li>Musik anhören: Handy-Lautsprecher und Kopfhörer.</li>
+      <li>Steffi bestätigt die Einwilligung der gezeigten Kundinnen und Kunden zur Nutzung in Werbung.</li>
+      <li>Optional: Steffis Voiceover einsprechen lassen, die Videos werden dann automatisch neu gemischt.</li>
+      <li>Upload in den Ads Manager nur nach Freigabe, neue Anzeigen pausiert anlegen. Vorschlag: V2 und V3 in «K | Leads | Neukunden Video | CH», V1 und V4 ins Retargeting.</li>
+    </ol>
+  </footer>
+</div>
+
+<script>
+const DATA = /*DATA*/null;
+const OPTS = {
+  format: [["", "Alle"], ["916", "9:16"], ["45", "4:5"]],
+  hook: [["", "Alle"], ["A", "A"], ["B", "B"], ["C", "C"]],
+  start: [["", "Alle"], ["mit", "mit"], ["ohne", "ohne"]],
+};
+let state = { format: "916", hook: "", start: "" };
+try { Object.assign(state, JSON.parse(localStorage.getItem("mt-filter") || "{}")); } catch (e) {}
+
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const okL = (v) => v >= -15 && v <= -13;
+const okT = (v) => v <= -1;
+const okM = (v) => v < 30;
+
+function facts() {
+  const it = DATA.items;
+  const pass = it.filter((i) => okL(i.lufs) && okT(i.tp) && okM(i.mb)).length;
+  const maxMb = Math.max(...it.map((i) => i.mb));
+  document.getElementById("facts").innerHTML = [
+    [it.length, "Fassungen"],
+    [pass + " / " + it.length, "Technik-Prüfung bestanden"],
+    ["−14 LUFS", "Lautheit-Ziel"],
+    [maxMb.toFixed(1) + " MB", "grösste Datei (Limit 30)"],
+  ].map(([b, s]) => `<div><b>${b}</b><span>${s}</span></div>`).join("");
+}
+
+function filters() {
+  document.querySelectorAll(".group").forEach((g) => {
+    const key = g.dataset.key;
+    g.querySelectorAll("button").forEach((b) => b.remove());
+    OPTS[key].forEach(([v, label]) => {
+      const b = document.createElement("button");
+      b.className = "chip"; b.type = "button"; b.textContent = label;
+      b.setAttribute("aria-pressed", String(state[key] === v));
+      b.addEventListener("click", () => {
+        state[key] = v;
+        try { localStorage.setItem("mt-filter", JSON.stringify(state)); } catch (e) {}
+        filters(); render();
+      });
+      g.appendChild(b);
+    });
+  });
+}
+
+function copyText(btn, text) {
+  const done = () => { btn.textContent = "Kopiert"; setTimeout(() => (btn.textContent = "Text kopieren"), 1600); };
+  navigator.clipboard.writeText(text).then(done).catch(() => {
+    const p = btn.previousElementSibling; const r = document.createRange(); r.selectNodeContents(p);
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Markiert – mit Cmd+C kopieren";
+  });
+}
+
+function render() {
+  const root = document.getElementById("videos");
+  root.innerHTML = "";
+  DATA.videos.forEach((v) => {
+    const items = DATA.items.filter((i) => i.video === v.id &&
+      (!state.format || i.format === state.format) && (!state.hook || i.hook === state.hook) &&
+      (!state.start || !i.start || i.start === state.start));
+    const sec = document.createElement("section");
+    sec.className = "video"; sec.id = v.id;
+    const hooks = Object.entries(v.hooks).map(([k, t]) => `<dt>${k}</dt><dd>${esc(t)}</dd>`).join("");
+    const starts = Object.entries(v.start).map(([k, t]) => `<dt>${k}</dt><dd>${esc(t)}</dd>`).join("");
+    sec.innerHTML = `
+      <div class="info">
+        <div class="slot">${esc(v.slot)}</div>
+        <h2>${esc(v.title)}</h2>
+        <div class="copy"><label>Primärtext</label><p>${esc(v.primary)}</p><button class="copybtn" type="button">Text kopieren</button></div>
+        <div class="copy"><label>Titel</label><p class="head">${esc(v.headline)}</p><button class="copybtn" type="button">Text kopieren</button></div>
+        <div class="copy"><label>Hooks (erste 3 Sekunden)</label><dl class="hooks">${hooks}</dl></div>
+        ${starts ? `<div class="copy"><label>Ausgangszustand</label><dl class="hooks">${starts}</dl></div>` : ""}
+        <div class="music">Musik: ${esc(v.music)} · Mixkit-Lizenz erlaubt Online-Werbung</div>
+      </div>
+      <div class="grid">${items.length ? items.map(card).join("") : `<p class="empty">Keine Fassung für diese Filter. Ausgangszustand gibt es nur bei Narbe und Cover-up.</p>`}</div>`;
+    sec.querySelectorAll(".copybtn").forEach((b) => b.addEventListener("click", () => copyText(b, b.previousElementSibling.textContent)));
+    root.appendChild(sec);
+  });
+}
+
+function card(i) {
+  const fmt = i.format === "916" ? "9:16" : "4:5";
+  const label = `Hook ${i.hook} · ${fmt}${i.start ? " · " + i.start : ""}`;
+  return `<figure>
+    <div class="frame f${i.format}"><video controls playsinline preload="metadata" src="videos/${esc(i.file)}#t=0.1" aria-label="${esc(label)}"></video></div>
+    <figcaption><b>${esc(label)}</b>
+      <div class="meta">
+        <span class="pill ${okL(i.lufs) ? "ok" : "no"}">${i.lufs.toFixed(1)} LUFS</span>
+        <span class="pill ${okT(i.tp) ? "ok" : "no"}">${i.tp.toFixed(1)} dBTP</span>
+        <span class="pill ${okM(i.mb) ? "ok" : "no"}">${i.mb.toFixed(1)} MB</span>
+      </div>
+      <a href="videos/${esc(i.file)}" target="_blank" rel="noopener">${esc(i.file)}</a>
+    </figcaption>
+  </figure>`;
+}
+
+facts(); filters(); render();
+</script>
